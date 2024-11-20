@@ -11,7 +11,6 @@ public class profileAccess {
     File users;
     ArrayList<String> usersList = new ArrayList<>();
     private Map<String, ArrayList<String>> usersMap = new HashMap<>();
-    ArrayList<String> tempList = new ArrayList<>();
 
     public void initialize() throws IOException {
         users = new File("users.txt");
@@ -28,6 +27,10 @@ public class profileAccess {
         }
         usersScanner.close();
         createUserFiles();
+        for(int i = 0; i < usersMap.get("Death").size(); i++)
+        {
+            System.out.println(usersMap.get("Death").get(i));
+        }
 
     }
 
@@ -36,7 +39,7 @@ public class profileAccess {
         {
 
             File user = new File(username + ".txt");
-            tempList.clear();
+            ArrayList<String> tempList = new ArrayList<>();
             if(user.createNewFile())
             {
                 System.out.println("File created: " + user.getName());
@@ -51,8 +54,20 @@ public class profileAccess {
                 tempList.add(scanner.nextLine());
             }
             scanner.close();
-            usersMap.put(username, new ArrayList<>());
+            usersMap.put(username, tempList);
         }
+    }
+    public String[] getUsersList(String username) {
+        String[] tempArray = new String[usersMap.get(username).size()];
+        for(int i = 0; i< usersMap.get(username).size(); i++)
+        {
+            tempArray[i] = usersMap.get(username).get(i);
+        }
+        return tempArray;
+    }
+    public ArrayList<String> getAmountUsers(){
+        return usersList;
+
     }
 
 }

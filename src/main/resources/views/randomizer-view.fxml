@@ -58,7 +58,7 @@
             <Font name="Eras Demi ITC" size="14.0" />
          </font>
       </Button>
-      <ListView fx:id="profileList" layoutX="11.0" layoutY="45.0" prefHeight="385.0" prefWidth="199.0" />
+      <ListView fx:id="profileList" editable="true" layoutX="11.0" layoutY="45.0" prefHeight="385.0" prefWidth="199.0" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="6.0" layoutY="19.0" prefHeight="26.0" prefWidth="199.0" text="Operator Profile" textAlignment="CENTER">
          <font>
             <Font name="Eras Demi ITC" size="21.0" />

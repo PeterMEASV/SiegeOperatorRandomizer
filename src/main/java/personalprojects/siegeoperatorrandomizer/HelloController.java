@@ -48,13 +48,19 @@ public class HelloController {
     private Button btnBanAdd;
     @FXML
     private Button btnProfileCreate;
-
+    @FXML
+    private ListView profileList;
 
 
     public void initialize() throws IOException {
         fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/views/profile-view.fxml"));
         scene = new Scene(fxmlLoader.load(), 350, 450);
          profileAccess = fxmlLoader.getController();
+         for(int i = 0; i < profileAccess.getAmountUsers().size(); i++)
+         {
+             profileList.getItems().add(profileAccess.getAmountUsers().get(i));
+         }
+
     }
 
     @FXML
@@ -77,9 +83,18 @@ public class HelloController {
                 }
             }
             if(!banned) {
-                if(tempOperator.getSide() == sideActive) {
-                    addOperator(tempOperator);
-                    setOperatorDisplay(tempOperator);
+                String tempName = profileList.getSelectionModel().getSelectedItem().toString();
+                boolean check = false;
+                for(String userOp : profileAccess.getUsersList(tempName)) {
+                    if (userOp.equals(tempOperator.getName())) {
+                        check = true;
+                    }
+                }
+                        if(check){
+                        if(tempOperator.getSide() == sideActive) {
+                            addOperator(tempOperator);
+                            setOperatorDisplay(tempOperator);
+                        }
                 }
                 else
                 {
@@ -113,13 +128,35 @@ public class HelloController {
                         break;
                     }
                 }
-                if (!banned) {
+                boolean check = false;
+                if(!banned)
+                {
+                    String tempName = profileList.getSelectionModel().getSelectedItem().toString();
+                    for(String userOp : profileAccess.getUsersList(tempName))
+                    {
+                        if(userOp.equals(tempOperator.getName()))
+                        {
+                            System.out.println("operator " + tempOperator.getName() + " is indeed operator " + userOp);
+                            check = true;
+                            break;
+                        }
+                        System.out.println("operator " + tempOperator.getName() + " is not operator " + userOp);
+                    }
+
+                }
+
+                if (!banned && check) {
                     if (tempOperator.getSide() == sideActive) {
                         addOperator(tempOperator);
                         setOperatorDisplay(tempOperator);
                     } else {
                         banned = true;
                     }
+                }
+                if(!check)
+                {
+                    OpName.setText("All owned operators used");
+                    banned = true;
                 }
             }
             else
@@ -237,7 +274,6 @@ public class HelloController {
         }
         banList.getItems().remove(banList.getItems().size() - 1);
         generateOperator(actionEvent);
-
-
     }
+
 }
