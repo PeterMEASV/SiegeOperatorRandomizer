@@ -136,11 +136,10 @@ public class HelloController {
                     {
                         if(userOp.equals(tempOperator.getName()))
                         {
-                            System.out.println("operator " + tempOperator.getName() + " is indeed operator " + userOp);
+
                             check = true;
                             break;
                         }
-                        System.out.println("operator " + tempOperator.getName() + " is not operator " + userOp);
                     }
 
                 }
@@ -155,7 +154,7 @@ public class HelloController {
                 }
                 if(!check)
                 {
-                    OpName.setText("All owned operators used");
+                    OpName.setText("All operators used");
                     banned = true;
                 }
             }
@@ -253,7 +252,7 @@ public class HelloController {
     @FXML
     private void onProfileCreate(ActionEvent actionEvent) {
         Stage stage = new Stage();
-        stage.setTitle("The Best History");
+        stage.setTitle("Profile creator - WIP");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();

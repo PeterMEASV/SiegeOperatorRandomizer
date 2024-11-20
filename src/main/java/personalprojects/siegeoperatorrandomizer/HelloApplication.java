@@ -12,7 +12,8 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/views/randomizer-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 812, 600);
-        stage.setTitle("Hello!");
+        FileGeneration generation = new FileGeneration();
+        stage.setTitle("Siege randomizer - " + generation.getTitle() );
         stage.setScene(scene);
         stage.show();
         HelloController controller = fxmlLoader.getController();

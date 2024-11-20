@@ -17,7 +17,7 @@ doc
 dokkaebi
 echo
 ela
-Fenrir
+fenrir
 finka
 frost
 fuze
