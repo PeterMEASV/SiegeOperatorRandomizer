@@ -27,11 +27,6 @@ public class profileAccess {
         }
         usersScanner.close();
         createUserFiles();
-        for(int i = 0; i < usersMap.get("Death").size(); i++)
-        {
-            System.out.println(usersMap.get("Death").get(i));
-        }
-
     }
 
     public void createUserFiles() throws IOException {
